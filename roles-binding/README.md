@@ -40,5 +40,38 @@ This guide explains how to set up a Kubernetes user (`john`) with certificate-ba
 
 
 - `kubectl config use-context minikube`
-- 
+
+
+
+## 🔐 RBAC Reference
+
+### 🔧 Common Verbs in RBAC
+
+| Verb               | Description                                                  |
+|--------------------|--------------------------------------------------------------|
+| `get`              | Read a single resource                                       |
+| `list`             | List multiple resources                                      |
+| `watch`            | Watch for changes to resources                               |
+| `create`           | Create new resources                                         |
+| `update`           | Modify existing resources                                    |
+| `patch`            | Partially update a resource                                  |
+| `delete`           | Remove a resource                                            |
+| `deletecollection` | Delete a collection of resources                             |
+| `impersonate`      | Act as another user/resource (used in advanced scenarios)    |
+
+---
+
+### 📦 Common Core API Resources (`apiGroups: [""]`)
+
+| Resource                | Description                                 |
+|-------------------------|---------------------------------------------|
+| `pods`                  | Manage application pods                     |
+| `services`              | Manage ClusterIP/NodePort/LoadBalancer      |
+| `configmaps`            | Configuration storage                       |
+| `secrets`               | Encrypted configuration values              |
+| `endpoints`             | Internal network endpoints                  |
+| `namespaces`            | Top-level Kubernetes tenant                 |
+| `events`                | Kubernetes events for debugging             |
+| `persistentvolumeclaims`| Requests for persistent storage             |
+
 
