@@ -11,32 +11,34 @@ This guide explains how to set up a Kubernetes user (`john`) with certificate-ba
 - `openssl`
 
 ---
-kubectl apply -f john-csr.yaml
-kubectl certificate approve john-csr
-kubectl get csr john-csr -o jsonpath='{.status.certificate}' | base64 -d > john.crt
+
+---
+- `kubectl apply -f john-csr.yaml`
+- `kubectl certificate approve john-csr`
+- `kubectl get csr john-csr -o jsonpath='{.status.certificate}' | base64 -d > john.crt`
 
 
 
-kubectl apply -f role.yaml
-kubectl apply -f rolebinding.yaml
+- `kubectl apply -f role.yaml`
+- `kubectl apply -f rolebinding.yaml`
 
-kubectl config set-credentials john \
+- `kubectl config set-credentials john \
   --client-certificate=john.crt \
   --client-key=john.key \
-  --embed-certs=true
+  --embed-certs=true`
 
-kubectl config set-context john-context \
+- `kubectl config set-context john-context \
   --cluster=minikube \
   --namespace=dev-team \
-  --user=john
+  --user=john`
 
-kubectl config use-context john-context
-
-
-kubectl get pods -n dev-team         # ✅ should work
-kubectl get pods -n kube-system      # ❌ should be forbidden
+- `kubectl config use-context john-context`
 
 
-kubectl config use-context minikube
+- `kubectl get pods -n dev-team`  # ✅ should work
+-  `kubectl get pods -n kube-system`     # ❌ should be forbidden
 
+
+- `kubectl config use-context minikube`
+- 
 
