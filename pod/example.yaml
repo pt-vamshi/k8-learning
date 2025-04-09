@@ -1,0 +1,27 @@
+apiVersion: v1                     # Specifies the API version for the resource. 'v1' is for core Kubernetes resources like Pods.
+kind: Pod                          # Specifies the type of resource being created. Here, it's a Pod.
+metadata:                          # Metadata contains information about the Pod.
+  name: my-pod                     # The name of the Pod, must be unique within the namespace.
+  namespace: default               # (Optional) Specifies the namespace where the Pod will reside. Default is 'default' if not specified.
+  labels:                          # Key-value pairs to categorize the Pod.
+    app: my-app                    # A label to identify the application this Pod belongs to.
+spec:                              # Specification of the desired state of the Pod.
+  containers:                      # Lists all the containers that will run within this Pod.
+  - name: my-container             # The name of the container within the Pod.
+    image: nginx:latest            # Specifies the container image to use. Here, it's 'nginx' with the 'latest' tag.
+    ports:                         # Defines the ports the container will expose.
+    - containerPort: 80            # Specifies that the container listens on port 80.
+    resources:                     # Specifies resource requests and limits for the container.
+      requests:                    # Minimum resources the container requires.
+        cpu: "100m"                # 100 milliCPU (0.1 CPU core).
+        memory: "128Mi"            # 128 MiB of memory.
+      limits:                      # Maximum resources the container can use.
+        cpu: "250m"                # 250 milliCPU (0.25 CPU core).
+        memory: "256Mi"            # 256 MiB of memory.
+    volumeMounts:                  # Specifies how volumes are mounted into the container.
+    - name: shared-data            # The name of the volume to mount.
+      mountPath: /data             # Path inside the container where the volume will be mounted.
+  volumes:                         # Defines the volumes available to the Pod.
+  - name: shared-data              # Volume name.
+    emptyDir: {}                   # A temporary directory that shares data between containers in the Pod.
+  restartPolicy: Always            # Specifies the restart policy for containers. Default is 'Always'.
