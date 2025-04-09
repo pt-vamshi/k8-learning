@@ -37,19 +37,18 @@ Create the following YAML file ecommerce-pod.yaml:
 apiVersion: v1
 kind: Pod
 metadata:
-name: ecommerce-pod
-labels:
-   app: nginx
-run: busybox
+  name: ecommerce-pod
+  labels:
+    app: nginx
 spec:
-containers:
-- name: nginx
-image: nginx
-ports:
-- containerPort: 80
-- name: busybox
-image: busybox
-command: ["sleep", "3600"]
+  containers:
+  - name: nginx
+    image: nginx
+    ports:
+    - containerPort: 80
+  - name: busybox
+    image: busybox
+    command: ["sleep", "3600"]
 ```     
 
 ### Deploy the Pod
